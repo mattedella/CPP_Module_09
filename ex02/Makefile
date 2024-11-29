@@ -1,4 +1,4 @@
-SRC = main.cpp src/PmergeMe.cpp
+SRC = main.cpp src/PmergeMe.cpp src/Vector.cpp src/Deque.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -g -std=c++98
