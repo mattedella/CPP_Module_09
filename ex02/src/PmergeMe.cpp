@@ -112,11 +112,11 @@ std::vector<int> PmergeMe::getJacobsthal(int maxSize) {
 	int j = 0, i = 0;
 	jacobsthal.push_back(P0);
 	jacobsthal.push_back(P1);
-	for (int i = 2; i <= maxSize; i++) {
+	for (int i = 2; jacobsthal[i - 1] < maxSize; i++) {
 		jacobsthal.push_back(jacobsthal[i - 1] + (2 * jacobsthal[i - 2]));
 		std::cout << "push jacob done\n";
 	}
-	while (i < maxSize) {
+	while (jaconsthal[i - 1] < maxSize) {
 		j = jacobsthal[i] - 1;
 		sortSequence.push_back(jacobsthal[i]);
 		while (j > jacobsthal[i - 1]) {
