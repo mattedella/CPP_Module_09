@@ -1,6 +1,6 @@
 # include "includes/PmergeMe.hpp"
-#include <cstdlib>
 #include <cctype>
+#include <cstddef>
 
 int main(int argc, char **argv) {
 	if (argc == 1) {
@@ -20,31 +20,27 @@ int main(int argc, char **argv) {
 			int num = std::atoi(argv[i]);
 			sort.addToStack(num);
 		}
-		// sort.PairDeque();
-		// sort.getStackAfter();
 	}
 	else {
-		std::string Snum;
-		int i = 0;
-		while (argv[1][i]) {
-			while (argv[1][i] == ' ')
-				i++;
-			if (!std::isdigit(argv[1][i])) {
+		std::string string = argv[1];
+		for(size_t i = 0; string.size() > 0; i++) {
+			while (string[0] == ' ')
+				string.erase(string.begin());
+			if (!std::isdigit(string[0])) {
 				std::cerr << "Error: all argument must be a positive number\n";
 				return 1;
 			}
-			while (argv[1][i] != ' ' || argv[1][i] != '\0') {
-				std::cout << "conver string ";
-				std::string addNum(1, argv[1][i]);
-				Snum += addNum;
-				i++;
-			}
-			int num = std::atoi(Snum.c_str());
+			std::string Sum = string.substr(0, string.find(' '));
+			int num = std::atoi(Sum.c_str());
 			sort.addToStack(num);
-			i++;
+			for (size_t i = 0; i < Sum.size(); i++) {
+				string.erase(string.begin());
+			}
 		}
 	}
 	sort.getStackBefore();
 	sort.PairVector();
+	sort.PairDeque();
+	sort.getStackAfter();
 	return 0;
 }

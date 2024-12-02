@@ -8,6 +8,11 @@
 #include <iostream>
 #include <utility>
 #include <vector>
+#include <cstdlib>
+#include <cctype>
+#include <algorithm>
+#include <cstddef>
+#include <iomanip>
 
 class PmergeMe {
 
@@ -38,7 +43,8 @@ class PmergeMe {
         void bianrySearchVector(std::vector<int> jacobsthal, std::vector<int> pendant);
         
         void PairDeque();
-        void SortDeque(int* arrayA, int* arrayB);
+        void SortDeque(std::vector<std::pair<int, int> > array, int oddNumber);
+        void bianrySearchDeque(std::vector<int> jacobsthal, std::vector<int> pendant);
 
 
         ~PmergeMe();

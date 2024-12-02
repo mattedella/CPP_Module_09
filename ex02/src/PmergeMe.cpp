@@ -1,12 +1,5 @@
 
 #include "../includes/PmergeMe.hpp"
-#include <algorithm>
-#include <cstddef>
-#include <ctime>
-#include <filesystem>
-#include <iomanip>
-#include <utility>
-#include <vector>
 
 PmergeMe::PmergeMe() {}
 
@@ -27,32 +20,24 @@ void PmergeMe::addToStack(int num) {
 }
 
 void PmergeMe::getStackBefore() {
-	// std::cout << "Before deque: ";
-	// for (size_t i = 0; i < _stackD.size(); i++)
-	//	 std::cout << _stackD[i] << " ";
-	// std::cout << '\n';
-	std::cout << "Before vector: ";
-	for (size_t i = 0; i < _stackV.size(); i++)
-		std::cout << _stackV[i] << " ";
+	std::cout << "Before : ";
+	for (size_t i = 0; i < _stackD.size(); i++)
+		std::cout << _stackD[i] << " ";
 	std::cout << "\n\n";
 }
 
 void PmergeMe::getStackAfter() {
-	// std::cout << "After deque: ";
-	// for (size_t i = 0; i < _stackD.size(); i++)
-	//	 std::cout << _stackD[i] << " ";
-	// std::cout << '\n';
-	std::cout << "After vector: ";
+	std::cout << "After : ";
 	for (size_t i = 0; i < _stackV.size(); i++)
 		std::cout << _stackV[i] << " ";
 	std::cout << "\n\n";
 	double elapsed_timeV = (double)(_endV - _startV) / CLOCKS_PER_SEC;
-	// double elapsed_timeD = (double)(_endD - _startD) / CLOCKS_PER_SEC;
+	double elapsed_timeD = (double)(_endD - _startD) / CLOCKS_PER_SEC;
 	std::cout << "time to process a range of " << _stackV.size()
 		<< " element with std::vector : ";
 	std::cout << std::fixed << std::setprecision(5) << elapsed_timeV << " us\n";
-	// std::cout << "time to process a range of " << _stackD.size() << " element with std::deque : ";
-	// 	std::cout << std::fixed << std::setprecision(5) << elapsed_timeD << " us\n";
+	std::cout << "time to process a range of " << _stackD.size() << " element with std::deque : ";
+		std::cout << std::fixed << std::setprecision(5) << elapsed_timeD << " us\n";
 
 }
 
@@ -93,7 +78,6 @@ void PmergeMe::Merge(std::vector<std::pair<int, int> >& array, int left, int mid
 }
 
 void PmergeMe::MergeSort(std::vector<std::pair<int, int> >& array, int left, int right) {
-	std::cout << "merge sort start\n";
 	if (left >= right)
 		return ;
 	
@@ -109,14 +93,18 @@ std::vector<int> PmergeMe::getJacobsthal(int maxSize) {
 	std::vector<int> sortSequence;
 	int P0 = 1;
 	int P1 = 3;
-	int j = 0, i = 0;
+	int j = 0, i = 1;
 	jacobsthal.push_back(P0);
 	jacobsthal.push_back(P1);
 	for (int i = 2; jacobsthal[i - 1] < maxSize; i++) {
-		jacobsthal.push_back(jacobsthal[i - 1] + (2 * jacobsthal[i - 2]));
-		std::cout << "push jacob done\n";
+		int x = jacobsthal[i - 1] + (2 * jacobsthal[i - 2]);
+		jacobsthal.push_back(x);
+		j++;
 	}
-	while (jaconsthal[i - 1] < maxSize) {
+	while (jacobsthal[i - 1] < maxSize) {
+		if (jacobsthal[i] > maxSize) {
+			jacobsthal[i] = maxSize;
+		}
 		j = jacobsthal[i] - 1;
 		sortSequence.push_back(jacobsthal[i]);
 		while (j > jacobsthal[i - 1]) {
@@ -124,9 +112,7 @@ std::vector<int> PmergeMe::getJacobsthal(int maxSize) {
 			j--;
 		}
 		i++;
-		std::cout << "sequence done\n";
 	}
-	sortSequence.erase(sortSequence.begin());
 	return sortSequence;
 }
 

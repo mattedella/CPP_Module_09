@@ -29,6 +29,10 @@ void RPN::makeOperator(std::string& op) {
             n = n2 * n1;
             break;
         case 3:
+            if (n1 == 0) {
+                std::cerr << "division per 0 is impossible\n";
+                return ;
+            }
             n = n2 / n1;
             break;
         default:
