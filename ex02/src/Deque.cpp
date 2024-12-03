@@ -1,5 +1,6 @@
 
 #include "../includes/PmergeMe.hpp"
+#include <ctime>
 
 void PmergeMe::bianrySearchDeque(std::vector<int> jacobsthal, std::vector<int> pendant) {
 	std::deque<int>::iterator pos = std::lower_bound(_stackD.begin(), _stackD.end(), pendant[0]);;
@@ -37,6 +38,10 @@ void PmergeMe::PairDeque() {
 	int oddNumber = -1;
 	size_t maxSize = _stackD.size();
 
+	if (_stackD.size() == 1) {
+		_endD = clock();
+		return ;
+	}
 	if (_stackD.size() % 2 != 0) {
 		oddNumber = _stackD.back();
 		_stackD.pop_back();

@@ -22,6 +22,10 @@ int main(int argc, char **argv) {
 		}
 	}
 	else {
+		if (argv[1][0] == '\0') {
+			std::cerr << "Error: all argument must be a positive number\n";
+			return 1;
+		}
 		std::string string = argv[1];
 		for(size_t i = 0; string.size() > 0; i++) {
 			while (string[0] == ' ')

@@ -37,6 +37,10 @@ void PmergeMe::PairVector() {
 	int oddNumber = -1;
 	size_t maxSize = _stackV.size();
 
+	if (_stackV.size() == 1) {
+		_endV = clock();
+		return ;
+	}
 	if (_stackV.size() % 2 != 0) {
 		oddNumber = _stackV.back();
 		_stackV.pop_back();
